@@ -2,6 +2,8 @@ package com.example.study_of_retrofit.repository
 
 import com.example.study_of_retrofit.api.RetrofitInstance
 import com.example.study_of_retrofit.model.Post
+import com.example.study_of_retrofit.model.Userss
+import com.example.study_of_retrofit.model.UserssItem
 import retrofit2.Response
 
 class Repository {
@@ -18,4 +20,8 @@ class Repository {
         return RetrofitInstance.api.getCustomPost(userId)
     }
 
+
+    suspend fun getUser(): Response<Userss>{
+        return RetrofitInstance.api.getUsers()
+    }
 }

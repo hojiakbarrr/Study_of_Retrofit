@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.study_of_retrofit.model.Post
+import com.example.study_of_retrofit.model.Userss
+import com.example.study_of_retrofit.model.UserssItem
 import com.example.study_of_retrofit.repository.Repository
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -13,6 +15,9 @@ class MainViewModel(private val repository: Repository): ViewModel() {
     val myResponse: MutableLiveData<Response<Post>> = MutableLiveData()
     val myResponse2: MutableLiveData<Response<Post>> = MutableLiveData()
     val myCustomPosts: MutableLiveData<Response<List<Post>>> = MutableLiveData()
+    val myResponseUser: MutableLiveData<Response<Userss>> = MutableLiveData()
+
+
 
     fun getPost(){
         viewModelScope.launch {
@@ -32,6 +37,13 @@ class MainViewModel(private val repository: Repository): ViewModel() {
         viewModelScope.launch {
             val response : Response<List<Post>> = repository.getCustomPosts(userId)
             myCustomPosts.value = response
+        }
+    }
+
+    fun getUser(){
+        viewModelScope.launch {
+            val response : Response<Userss> = repository.getUser()
+            myResponseUser.value = response
         }
     }
 
